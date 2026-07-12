@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=sqlite:////app/server/dev.db
+      - JWT_SECRET=your_secret_here
+    command: uvicorn app.asgi:asgi_app --host 0.0.0.0 --port 3000
